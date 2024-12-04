@@ -1,5 +1,7 @@
 # Parcial 2 Daniel Sousa
 
+link al repositorio: https://github.com/dsousa034/Sousa_Daniel_Parcial2_Eventos.git
+
 ## Descripción del Proyecto
 Este proyecto es una aplicación Android desarrollada utilizando Kotlin y Java. Incluye funcionalidades para la gestión de eventos y la visualización de detalles de farmacias. El proyecto utiliza Firebase para el almacenamiento y recuperación de datos.
 
