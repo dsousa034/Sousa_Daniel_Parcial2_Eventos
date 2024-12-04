@@ -53,11 +53,18 @@ class MainActivityejdos : AppCompatActivity() {
         // Floating action button para agregar un evento
         val fabAddEvent = findViewById<View>(R.id.fabAddEvent)
         fabAddEvent.setOnClickListener {
-            startActivity(Intent(this, AddEventActivity::class.java))
+            startActivityForResult(Intent(this, AddEventActivity::class.java), ADD_EVENT_REQUEST_CODE)
         }
 
         // Obtener los eventos desde Firebase
         getEventsFromFirebase()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == ADD_EVENT_REQUEST_CODE && resultCode == RESULT_OK) {
+            getEventsFromFirebase()
+        }
     }
 
     private fun getEventsFromFirebase() {
@@ -86,5 +93,9 @@ class MainActivityejdos : AppCompatActivity() {
 
         // Reiniciar la actividad para aplicar el idioma
         recreate()
+    }
+
+    companion object {
+        private const val ADD_EVENT_REQUEST_CODE = 1
     }
 }
