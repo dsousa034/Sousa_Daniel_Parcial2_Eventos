@@ -10,5 +10,11 @@
     <string name="event_capacity">Aforo</string>
     <string name="save">Guardar</string>
     <string name="cancel">Cancelar</string>
-
+    <string-array name="dias_array">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miércoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+    </string-array>
 </resources>

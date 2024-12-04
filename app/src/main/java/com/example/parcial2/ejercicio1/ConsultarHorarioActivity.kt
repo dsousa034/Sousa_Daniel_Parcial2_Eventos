@@ -2,8 +2,9 @@ package com.example.parcial2.ejercicio1
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parcial2.R
@@ -21,14 +22,20 @@ class ConsultarHorarioActivity : AppCompatActivity() {
 
         // Acceder a las vistas con findViewById
         val btnConsultar = findViewById<Button>(R.id.btnConsultar)
-        val etDiaConsulta = findViewById<EditText>(R.id.etDiaConsulta)
+        val spinnerDias = findViewById<Spinner>(R.id.spinnerDias)
         val tvResultado = findViewById<TextView>(R.id.tvResultado)
+
+        // Configurar el Spinner con los días de la semana
+        val dias = resources.getStringArray(R.array.dias_array)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, dias)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerDias.adapter = adapter
 
         // Configurar listener para el botón
         btnConsultar.setOnClickListener {
-            val dia = etDiaConsulta.text.toString()
+            val dia = spinnerDias.selectedItem.toString()
             consultarHorario(dia) { asignaturas ->
-                tvResultado.text = asignaturas.joinToString("\n") { it.nombre }
+                tvResultado.text = asignaturas.joinToString("\n") { it.nombre + " a las " + it.hora}
             }
         }
     }
