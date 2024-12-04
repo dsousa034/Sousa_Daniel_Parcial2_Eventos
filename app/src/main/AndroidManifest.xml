@@ -1,0 +1,50 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.parcial2">
+    <uses-permission android:name="android.permission.INTERNET">
+
+    </uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Parcial2">
+
+        <activity android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ejercicio1.MainActivityejuno"
+            android:exported="true"
+            android:label="Ejercicio 1 - Menú Principal"
+            android:theme="@style/Theme.Parcial2"
+            />
+        <activity android:name=".ejercicio1.AgregarAsignaturaActivity"
+            android:exported="true"
+            android:label="Ejercicio 1 - Agregar Asignatura"
+            android:theme="@style/Theme.Parcial2"
+            />
+        <activity android:name=".ejercicio1.AsignaturaActualActivity"
+            android:exported="true"
+            android:label="Ejercicio 1 - Asignatura Actual"
+            android:theme="@style/Theme.Parcial2"/>
+        <activity android:name=".ejercicio1.ConsultarHorarioActivity"
+            android:exported="true"
+            android:label="Ejercicio 1 - Consultar Horario"
+            android:theme="@style/Theme.Parcial2"/>
+
+        <activity android:name=".ejercicio2.MainActivityejdos"
+            android:exported="true"
+            android:label="Ejercicio 2 - Eventos"
+            android:theme="@style/Theme.Parcial2"/>
+        <activity android:name=".ejercicio2.AddEventActivity"
+            android:exported="true"
+            android:label="Ejercicio 2 - Agregar Evento"
+            android:theme="@style/Theme.Parcial2"/>
+    </application>
+</manifest>
