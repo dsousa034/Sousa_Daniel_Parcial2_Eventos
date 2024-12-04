@@ -46,5 +46,11 @@
             android:exported="true"
             android:label="Ejercicio 2 - Agregar Evento"
             android:theme="@style/Theme.Parcial2"/>
+
+        <activity android:name=".ejercicio3.MainActivityejtres"
+            android:exported="true"
+            android:label="Ejercicio 3 - Eventos"
+            android:theme="@style/Theme.Parcial2"/>
+
     </application>
 </manifest>

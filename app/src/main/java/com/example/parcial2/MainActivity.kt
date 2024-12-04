@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.parcial2.ejercicio1.MainActivityejuno as Ejercicio1MainActivity
 import com.example.parcial2.ejercicio2.MainActivityejdos as Ejercicio2MainActivity
+import com.example.parcial2.ejercicio3.MainActivityejtres as Ejercicio3MainActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnEjercicio3.setOnClickListener {
-            // Add your intent here if needed
+            startActivity(Intent(this, Ejercicio3MainActivity::class.java))
         }
     }
 }

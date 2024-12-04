@@ -68,5 +68,5 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation ("com.google.android.gms:play-services-auth:20.3.0")
-
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
 }
