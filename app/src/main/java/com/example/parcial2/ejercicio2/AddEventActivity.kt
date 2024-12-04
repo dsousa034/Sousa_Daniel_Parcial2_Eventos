@@ -1,13 +1,13 @@
 package com.example.parcial2.ejercicio2
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.example.parcial2.R
-import kotlinx.coroutines.launch
+import com.google.firebase.firestore.FirebaseFirestore
 
 class AddEventActivity : AppCompatActivity() {
 
@@ -19,7 +19,7 @@ class AddEventActivity : AppCompatActivity() {
     private lateinit var edtEventCapacity: EditText
     private lateinit var btnSaveEvent: Button
     private lateinit var btnCancel: Button
-    private lateinit var database: AppDatabase
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,12 @@ class AddEventActivity : AppCompatActivity() {
         btnSaveEvent = findViewById(R.id.btnSaveEvent)
         btnCancel = findViewById(R.id.btnCancel)
 
-        database = AppDatabase.getDatabase(this)
+        val btnBack = findViewById<Button>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish()
+        }
+
+        db = FirebaseFirestore.getInstance()
 
         btnSaveEvent.setOnClickListener {
             saveEvent()
@@ -58,11 +63,17 @@ class AddEventActivity : AppCompatActivity() {
 
             val event = Event(name = eventName, description = eventDescription, address = eventAddress, price = eventPrice, date = eventDate, capacity = eventCapacity)
 
-            lifecycleScope.launch {
-                database.eventDao().insert(event)
-                Toast.makeText(this@AddEventActivity, "Evento guardado correctamente", Toast.LENGTH_SHORT).show()
-                finish()
-            }
+            db.collection("Eventos")
+                .add(event)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Evento guardado correctamente", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivityejdos::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error al guardar el evento", Toast.LENGTH_SHORT).show()
+                }
         } else {
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show()
         }

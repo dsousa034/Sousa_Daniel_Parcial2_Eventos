@@ -24,13 +24,21 @@ class MainActivityejdos : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_ejercicio2)
 
+        // Botón para regresar
+        val btnBack = findViewById<Button>(R.id.btnBack)
+        btnBack.setOnClickListener {
+            finish()
+        }
+
         recyclerView = findViewById(R.id.recyclerView)
         btnChangeLanguage = findViewById(R.id.btnChangeLanguage)
 
         recyclerView.layoutManager = LinearLayoutManager(this)
         eventsList = mutableListOf()
+        adapter = EventAdapter(eventsList)
+        recyclerView.adapter = adapter
 
-        database = FirebaseDatabase.getInstance().getReference("events")
+        database = FirebaseDatabase.getInstance().getReference("Eventos")
 
         // Botón para cambiar el idioma
         btnChangeLanguage.setOnClickListener {
@@ -60,12 +68,11 @@ class MainActivityejdos : AppCompatActivity() {
                     val event = eventSnapshot.getValue(Event::class.java)
                     event?.let { eventsList.add(it) }
                 }
-                adapter = EventAdapter(eventsList)
-                recyclerView.adapter = adapter
+                adapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@MainActivityejdos, "Error al cargar los eventos.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivityejdos, "Error al cargar los eventos: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
